@@ -1,0 +1,9 @@
+# Dependencias
+node_modules/
+
+# Build
+build/
+dist/
+
+# Otros
+.env
