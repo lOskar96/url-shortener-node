@@ -3,6 +3,8 @@ import { User, UserDocument } from '../models/User'
 import jwt from 'jsonwebtoken'
 import { Request, Response } from 'express'
 
+const isProduction = process.env.NODE_ENV === 'production'
+
 export const generateToken = (id: string): string => {
   return jwt.sign({ id }, process.env.JWT_SECRET as string, {
     expiresIn: '1d'
@@ -12,8 +14,8 @@ export const generateToken = (id: string): string => {
 const resCookie = (res: Response, token: string): Response => {
   return res.cookie('token', token, {
     httpOnly: true,
-    secure: false, // poner false solo en localhost para pruebas
-    sameSite: 'lax',
+    secure: true,
+    sameSite: isProduction ? 'none' : 'lax',
     path: '/',
     maxAge: 1000 * 60 * 60 * 24 // 1 día
   })
