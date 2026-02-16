@@ -3,6 +3,7 @@ import urlRoutes from './routes/urlRoutes.js'
 import authRoutes from './routes/authRoutes.js'
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
+import { redirectUrl } from './controllers/urlController.js'
 
 const app: Express = express()
 
@@ -17,7 +18,8 @@ app.use(
   })
 )
 
-app.use('/', urlRoutes)
-app.use('/auth', authRoutes)
+app.use('/:code', redirectUrl)
+app.use('/api', urlRoutes)
+app.use('/api/auth', authRoutes)
 
 export default app
