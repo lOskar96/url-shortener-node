@@ -18,8 +18,16 @@ app.use(
   })
 )
 
-app.use('/:code', redirectUrl)
+app.param('code', (req, res, next, code) => {
+  if (/^[a-zA-Z0-9]{6}$/.test(code)) {
+    next()
+  } else {
+    res.status(404).send('Not found')
+  }
+})
+
 app.use('/api', urlRoutes)
 app.use('/api/auth', authRoutes)
+app.get('/:code', redirectUrl)
 
 export default app
