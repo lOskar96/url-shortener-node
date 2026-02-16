@@ -1,9 +1,9 @@
 import express, { Express } from 'express'
-import urlRoutes from './routes/urlRoutes.js'
-import authRoutes from './routes/authRoutes.js'
+import urlRoutes from './routes/urlRoutes'
+import authRoutes from './routes/authRoutes'
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
-import { redirectUrl } from './controllers/urlController.js'
+import { redirectUrl } from './controllers/urlController'
 
 const app: Express = express()
 

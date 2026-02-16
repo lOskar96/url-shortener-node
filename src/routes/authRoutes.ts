@@ -4,8 +4,8 @@ import {
   login,
   logout,
   changeUsername
-} from '../controllers/authController.js'
-import { deleteUser } from '../controllers/authController.js'
+} from '../controllers/authController'
+import { deleteUser } from '../controllers/authController'
 
 const router = Router()
 

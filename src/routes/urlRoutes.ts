@@ -4,8 +4,8 @@ import {
   shortenUrl,
   deleteUrl,
   editUrl
-} from '../controllers/urlController.js'
-import { protect } from '../middlewares/authMiddleware.js'
+} from '../controllers/urlController'
+import { protect } from '../middlewares/authMiddleware'
 
 const router = Router()
 
