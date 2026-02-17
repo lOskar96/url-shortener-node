@@ -63,6 +63,7 @@ export const redirectUrl = async (
     let url = await Url.findOne({ shortCode: code })
     if (!url) return res.status(404).json({ message: 'URL no encontrada' })
     url.clicks += 1
+    url.lastClick = new Date()
     await url.save()
 
     res.status(302).redirect(url.originalUrl)
