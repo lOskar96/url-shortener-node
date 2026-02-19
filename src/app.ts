@@ -7,11 +7,20 @@ import { redirectUrl } from './controllers/urlController'
 
 const app: Express = express()
 
+const whitelist = ['http://localhost:3000', 'https://shurty.vercel.app']
+
 app.use(cookieParser())
 app.use(express.json())
 app.use(
   cors({
-    origin: 'http://localhost:3000',
+    origin: function (origin, callback) {
+      // origin es undefined si la petición es local (como Postman o Server-to-Server)
+      if (!origin || whitelist.includes(origin)) {
+        callback(null, true)
+      } else {
+        callback(new Error('No permitido por CORS'))
+      }
+    },
     credentials: true,
     allowedHeaders: ['Content-Type', 'credentials'],
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS']
